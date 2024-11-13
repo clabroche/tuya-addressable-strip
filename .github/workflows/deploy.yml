@@ -30,6 +30,6 @@ jobs:
         context: .
         file: Dockerfile.standalone
         tags: | 
-          ghcr.io/clabroche/tuya-addressable-strip/tuya-addressable-strip:latest
-          ghcr.io/clabroche/tuya-addressable-strip/tuya-addressable-strip:${{fromJson(steps.package-json.outputs.packageJson).version}}
+          iryu54/tuya-addressable-strip:latest
+          iryu54/tuya-addressable-strip:${{fromJson(steps.package-json.outputs.packageJson).version}}
         push: true
