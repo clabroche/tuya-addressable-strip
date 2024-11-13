@@ -10,5 +10,5 @@ module.exports = {
   TUYA_SECRET_KEY: TUYA_SECRET_KEY || '',
   TUYA_ACCESS_KEY: TUYA_ACCESS_KEY || '',
   APIKEY: APIKEY || '',
-  PORT: PORT || '3000',
+  PORT: PORT || '5845',
 }
