@@ -1,5 +1,5 @@
 FROM alpine:3.20.3 AS builder
-RUN apk --no-cache add gcc g++ make python3 nodejs npm yarn
+RUN apk --no-cache add gcc g++ make python3 nodejs npm yarn jq
 
 WORKDIR /app
 COPY yarn.lock ./yarn.lock

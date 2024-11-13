@@ -1,7 +1,7 @@
 {
   "name": "Tuya Addressable Strip",
   "description": "Reverse engineering on Tuya payload for addressable LED strips. Useful to integrate with Home Assistant",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "slug": "tuya_addressable_strip",
   "init": false,
   "image": "iryu54/tuya-addressable-strip",
