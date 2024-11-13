@@ -14,5 +14,9 @@ RUN apk --no-cache add nodejs
 WORKDIR /app
 RUN mkdir /app/dist
 COPY --from=builder /app .
+LABEL org.opencontainers.image.source=https://github.com/clabroche/tuya-addressable-strip
+LABEL org.opencontainers.image.description=""
+LABEL org.opencontainers.image.licenses=MIT
+
 
 CMD ["node", "src/index.js"]
