@@ -5,6 +5,8 @@ const {
   APIKEY,
   PORT
 } = process.env
+
+console.log('Configure with tuya', TUYA_ACCESS_KEY)
 module.exports = {
   TUYA_SERVER_URL: TUYA_SERVER_URL || 'https://openapi.tuyaeu.com',
   TUYA_SECRET_KEY: TUYA_SECRET_KEY || '',
