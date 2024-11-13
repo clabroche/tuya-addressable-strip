@@ -1,9 +1,12 @@
 require('dotenv').config()
-const {existsSync} = require('fs');
+const {existsSync, readFileSync} = require('fs');
 const pathfs = require('path');
 const pathToHomeAssistantConfig = pathfs.resolve('/data/options.json')
 if(existsSync(pathToHomeAssistantConfig)) {
-	require('dotenv').config({path: pathToHomeAssistantConfig})
+  const config = JSON.parse(readFileSync(pathToHomeAssistantConfig, 'utf-8'))
+  Object.keys(config).forEach(key => {
+    process.env[key] = config[key]
+  })
 }
 const {
   TUYA_SERVER_URL,
