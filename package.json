@@ -1,0 +1,20 @@
+{
+  "name": "tuya-addressable-strip",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "tuya-cli": "npx tuya-cli"
+  },
+  "dependencies": {
+    "@tuya/tuya-connector-nodejs": "^2.1.2",
+    "base64-js": "^1.5.1",
+    "bluebird": "^3.7.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "packageManager": "yarn@4.5.1"
+}
