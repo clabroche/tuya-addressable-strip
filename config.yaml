@@ -3,7 +3,7 @@ description: "Reverse engineering on tuya payload for addressable led strips. Us
 version: "1.0.7"
 slug: "tuya_addressable_strip"
 init: false
-image: ghcr.io/clabroche/tuya-addressable-strip/tuya-addressable-strip
+image: ghcr.io/clabroche/tuya-addressable-strip
 arch:
   - amd64
 
