@@ -6,4 +6,4 @@ WORKDIR /app
 COPY run.sh /
 RUN chmod a+x /run.sh
 
-CMD [ "node", "src/index.js" ]
+CMD [ "/run.sh" ]
