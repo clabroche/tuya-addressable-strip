@@ -16,7 +16,6 @@ jobs:
         echo packageJSON=$(cat package.json) >> $GITHUB_OUTPUT
 
     - name: Publish
-      if: contains(github.ref_name, 'master')
       uses: docker/build-push-action@v5
       with:
         context: .
