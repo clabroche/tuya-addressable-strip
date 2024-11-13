@@ -1,3 +1,10 @@
+require('dotenv').config()
+const {existsSync} = require('fs');
+const pathfs = require('path');
+const pathToHomeAssistantConfig = pathfs.resolve('/data/options.json')
+if(existsSync(pathToHomeAssistantConfig)) {
+	require('dotenv').config({path: pathToHomeAssistantConfig})
+}
 const {
   TUYA_SERVER_URL,
   TUYA_SECRET_KEY,
