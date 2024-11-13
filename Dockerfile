@@ -1,18 +1,9 @@
-FROM alpine:3.20.3 AS builder
-RUN apk --no-cache add gcc g++ make python3 nodejs npm yarn
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
 WORKDIR /app
-COPY yarn.lock ./yarn.lock
-COPY .yarn .yarn
-COPY .yarnrc.yml .yarnrc.yml
-COPY package.json ./package.json
-RUN yarn install
-COPY . .
 
-FROM alpine:3.20.3
-RUN apk --no-cache add nodejs
-WORKDIR /app
-RUN mkdir /app/dist
-COPY --from=builder /app .
+COPY run.sh /
+RUN chmod a+x /run.sh
 
-CMD ["node", "src/index.js"]
+CMD [ "/run.sh" ]
