@@ -14,11 +14,18 @@ jobs:
       id: get_version
       run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
 
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+    - id: package-json
+      name: Read package.json
+      run: |
+        echo packageJSON=$(cat package.json) >> $GITHUB_OUTPUT
+
+    - name: Publish
+      if: contains(github.ref_name, 'master')
+      uses: docker/build-push-action@v5
       with:
-        name: clabroche/docker-registry/tuya-addressable-strip
-        username: ${{ secrets.DOCKER_HUB_USER }}
-        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        registry: docker.pkg.github.com
-        tags: "latest,${{ env.RELEASE_VERSION }}"
+        context: .
+        file: Dockerfile
+        tags: | 
+          ghcr.io/clabroche/docker-registry/tuya-addressable-strip:latest
+          ghcr.io/clabroche/docker-registry/tuya-addressable-strip:${{fromJson(steps.package-json.outputs.packageJson).version}}
+        push: true
