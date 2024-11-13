@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bashio
+#!/bin/bash
 echo "load envs"
 TUYA_SECRET_KEY=$(jq -r '.TUYA_SECRET_KEY' /data/options.json)
 TUYA_ACCESS_KEY=$(jq -r '.TUYA_ACCESS_KEY' /data/options.json)

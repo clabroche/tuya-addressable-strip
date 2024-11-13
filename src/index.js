@@ -5,6 +5,13 @@ const TuyaAdressableStrip = require('./lib/tuya')
 const express = require('express');
 const { rgbToHsv } = require('./helpers');
 const json = require('express').json;
+const {readFileSync, existsSync} = require('fs');
+const pathfs = require('path');
+
+const pathToHomeAssistantConfig = pathfs.resolve('/data/options.json')
+if(existsSync(pathToHomeAssistantConfig)) {
+	console.log(readFileSync(pathToHomeAssistantConfig, 'utf-8'))
+}
 
 const tuyaAccount  = new TuyaAdressableStrip({
 	baseUrl: TUYA_SERVER_URL,
