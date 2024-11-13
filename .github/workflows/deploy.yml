@@ -29,8 +29,8 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: Dockerfile
+        file: Dockerfile.standalone
         tags: | 
-          ghcr.io/clabroche/docker-registry/tuya-addressable-strip:latest
-          ghcr.io/clabroche/docker-registry/tuya-addressable-strip:${{fromJson(steps.package-json.outputs.packageJson).version}}
+          ghcr.io/clabroche/tuya-addressable-strip/tuya-addressable-strip:latest
+          ghcr.io/clabroche/tuya-addressable-strip/tuya-addressable-strip:${{fromJson(steps.package-json.outputs.packageJson).version}}
         push: true
