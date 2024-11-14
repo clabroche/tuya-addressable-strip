@@ -29,7 +29,7 @@ app.post('/:deviceId/set-pattern', async (req, res) => {
 });
 
 app.post('/decode-payload', async (req, res) => {
-	await tuyaAccount.decodePayload(req.body)
+	await tuyaAccount.decodePayload(req.body.hash)
   res.json({ result: 'ok!' });
 });
 

@@ -1,6 +1,6 @@
 const { TuyaContext  } = require('@tuya/tuya-connector-nodejs');
-const base64 = require('base64-js'); // Si besoin, installez avec 'npm install base64-js'
-const { rgbToHsv, hsvToBytes, chunk, rgbToHsvBytes } = require('../helpers');
+const base64 = require('base64-js');
+const { hsvToBytes, chunk, rgbToHsvBytes } = require('../helpers');
 
 class TuyaAdressableStrip {
   constructor({baseUrl, accessKey, secretKey} = {}) {
@@ -11,20 +11,18 @@ class TuyaAdressableStrip {
 		});
 	}
 
-	setStripAddressColor(device_id, {segment, gradient, rgb} = {}) {
-		const {hBytes,sBytes, vBytes} = rgbToHsvBytes(rgb || {})
+	setStripAddressColor(device_id, {segment, gradient, color} = {}) {
+		const {hBytes,sBytes, vBytes} = color.h ? hsvToBytes(color.h, color.s * 10, color.v * 10) : rgbToHsvBytes(color || {})
 		const tabInTuya = 2
 		const tuyaColor = Uint8Array.from([0, tabInTuya, gradient, 20, 1, ...hBytes, ...sBytes, ...vBytes,129,segment & 0xFF])
 		const b64 = base64.fromByteArray(tuyaColor)
 		this.sendPaintColor(device_id, b64)
-		if(rgb) {
-		}
 	}
 
-	setPattern(device_id, {gradient, rgbs}) {
+	setPattern(device_id, {gradient, colors}) {
 		const tabInTuya = 3
-		const hsvsBytes = rgbs.map(rgb => {
-			const {hBytes,sBytes, vBytes} = rgbToHsvBytes(rgb || {})
+		const hsvsBytes = colors.map(color => {
+		const {hBytes,sBytes, vBytes} = color.h ? hsvToBytes(color.h, color.s * 10, color.v * 10) : rgbToHsvBytes(color || {})
 			return [hBytes, sBytes, vBytes]
 		}).flat(2)
 		const tuyaColor = Uint8Array.from([0, tabInTuya, gradient, 20, 1, ...hsvsBytes])
